@@ -25,7 +25,16 @@ async function run() {
       .collection('studentData');
     const deptClearanceCollection = client
       .db('deptClearanceApplication')
-      .collection('deptClearanceApplication');
+      .collection('deptClearance');
+    const hallClearanceCollection = client
+      .db('hallClearanceApplication')
+      .collection('hallClearance');
+    const adminClearanceCollection = client
+      .db('adminClearanceApplication')
+      .collection('deptClearance');
+    const othersClearanceCollection = client
+      .db('othersClearanceApplication')
+      .collection('deptClearance');
 
     /**
      * student information post
@@ -63,6 +72,25 @@ async function run() {
     app.get('/dept-clearance-application', async (req, res) => {
       const query = { email: req.query.email };
       const result = await deptClearanceCollection.findOne(query);
+      res.send(result);
+    });
+
+    /**
+     * HALL clearance post application
+     * link: http://localhost:5000/hall-clearance-application
+     */
+    app.post('/hall-clearance-application', async (req, res) => {
+      const data = req.body;
+      const result = await hallClearanceCollection.insertOne(data);
+      res.send(result);
+    });
+    /**
+     * HALL clearance get application
+     * link: http://localhost:5000/hall-clearance-application?email=${email}
+     */
+    app.get('/hall-clearance-application', async (req, res) => {
+      const query = { email: req.query.email };
+      const result = await hallClearanceCollection.findOne(query);
       res.send(result);
     });
   } finally {
