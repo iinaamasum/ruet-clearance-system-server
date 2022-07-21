@@ -23,6 +23,9 @@ async function run() {
     const studentCollection = client
       .db('studentCollection')
       .collection('studentData');
+    const deptClearanceCollection = client
+      .db('deptClearanceApplication')
+      .collection('deptClearanceApplication');
 
     /**
      * student information post
@@ -42,6 +45,25 @@ async function run() {
       const query = { email: req.query.email };
       const info = await studentCollection.findOne(query);
       res.send(info);
+    });
+
+    /**
+     * dept clearance post application
+     * link: http://localhost:5000/dept-clearance-application
+     */
+    app.post('/dept-clearance-application', async (req, res) => {
+      const data = req.body;
+      const result = await deptClearanceCollection.insertOne(data);
+      res.send(result);
+    });
+    /**
+     * dept clearance get application
+     * link: http://localhost:5000/dept-clearance-application?email=${email}
+     */
+    app.get('/dept-clearance-application', async (req, res) => {
+      const query = { email: req.query.email };
+      const result = await deptClearanceCollection.findOne(query);
+      res.send(result);
     });
   } finally {
   }
