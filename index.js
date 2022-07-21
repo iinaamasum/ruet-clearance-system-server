@@ -93,6 +93,44 @@ async function run() {
       const result = await hallClearanceCollection.findOne(query);
       res.send(result);
     });
+
+    /**
+     * admin clearance post application
+     * link: http://localhost:5000/admin-clearance-application
+     */
+    app.post('/admin-clearance-application', async (req, res) => {
+      const data = req.body;
+      const result = await adminClearanceCollection.insertOne(data);
+      res.send(result);
+    });
+    /**
+     * admin clearance get application
+     * link: http://localhost:5000/admin-clearance-application?email=${email}
+     */
+    app.get('/admin-clearance-application', async (req, res) => {
+      const query = { email: req.query.email };
+      const result = await adminClearanceCollection.findOne(query);
+      res.send(result);
+    });
+
+    /**
+     * others clearance post application
+     * link: http://localhost:5000/others-clearance-application
+     */
+    app.post('/others-clearance-application', async (req, res) => {
+      const data = req.body;
+      const result = await othersClearanceCollection.insertOne(data);
+      res.send(result);
+    });
+    /**
+     * others clearance get application
+     * link: http://localhost:5000/others-clearance-application?email=${email}
+     */
+    app.get('/others-clearance-application', async (req, res) => {
+      const query = { email: req.query.email };
+      const result = await othersClearanceCollection.findOne(query);
+      res.send(result);
+    });
   } finally {
   }
 }
