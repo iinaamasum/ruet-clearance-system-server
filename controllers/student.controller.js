@@ -6,9 +6,10 @@ const {
 
 exports.getAllStudentInfo = async (req, res, next) => {
   try {
-    const allStudentInfo = await getAllStudentInfoService();
-    if (!Array.isArray(allStudentInfo)) {
-      res.status(400).json({
+    const email = req.query;
+    const allStudentInfo = await getAllStudentInfoService(email);
+    if (allStudentInfo.length == 0) {
+      return res.status(400).json({
         status: 'failed',
         message: "Can't get all students. Please populate first.",
         allStudentInfo,
@@ -29,7 +30,8 @@ exports.getAllStudentInfo = async (req, res, next) => {
 };
 
 exports.getStudentInfo = async (req, res, next) => {
-  const { id } = req.params;
+  const email = req.query;
+  console.log(email);
   res.status(200).json({
     status: 'success',
     message: `got the student with id ${id}. @param object`,
@@ -41,7 +43,7 @@ exports.postStudentInfo = async (req, res, next) => {
   try {
     const postedStudentInfo = await postStudentInfoService(req.body);
     if (!postedStudentInfo?._id) {
-      res.status(400).json({
+      return res.status(400).json({
         status: 'failed',
         message: "Can't post the student. Posting Database error.",
         postedStudentInfo,

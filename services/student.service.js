@@ -6,7 +6,7 @@ exports.postStudentInfoService = async (data) => {
   return result;
 };
 
-exports.getAllStudentInfoService = async () => {
-  const result = await StudentModel.find();
+exports.getAllStudentInfoService = async (data) => {
+  const result = await StudentModel.find(data);
   return result;
 };
