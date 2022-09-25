@@ -20,12 +20,7 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Email address is required',
       },
-      // validate: {
-      //   validator: [
-      //     validator.isEmail({ VALUE }),
-      //     'Please provide a valid mail.',
-      //   ],
-      // },
+      unique: true,
     },
     faculty: {
       type: String,
@@ -58,6 +53,7 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Roll must be provided.',
       },
+      unique: true,
     },
     contact_number: {
       type: String,
@@ -65,6 +61,7 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Please provide contact number.',
       },
+      unique: true,
     },
   },
   {

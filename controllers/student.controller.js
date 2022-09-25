@@ -1,4 +1,5 @@
 const StudentModel = require('../models/student.model');
+const { postStudentInfoService } = require('../services/student.service');
 
 exports.getAllStudentInfo = async (req, res, next) => {
   res.status(200).json({
@@ -18,11 +19,25 @@ exports.getStudentInfo = async (req, res, next) => {
 };
 
 exports.postStudentInfo = async (req, res, next) => {
-  const data = StudentModel(req.body);
-  const result = await data.save();
-  res.status(200).json({
-    status: 'success',
-    message: 'post a student info. @param object',
-    result,
-  });
+  try {
+    const postedStudentInfo = await postStudentInfoService(req.body);
+    if (!postedStudentInfo) {
+      res.status(400).json({
+        status: 'failed',
+        message: "Can't post the student. Posting Database error.",
+        postedStudentInfo,
+      });
+    }
+    res.status(200).json({
+      status: 'success',
+      message: 'post a student info. @param object',
+      postedStudentInfo,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'failed',
+      message: "Can't post the student. Server error.",
+      error,
+    });
+  }
 };
