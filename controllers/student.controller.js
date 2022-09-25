@@ -23,7 +23,7 @@ exports.getAllStudentInfo = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({
       status: 'failed',
-      message: "Can't get all students. Server error.",
+      message: "Can't get all students.",
       error,
     });
   }
@@ -45,7 +45,7 @@ exports.postStudentInfo = async (req, res, next) => {
     if (!postedStudentInfo?._id) {
       return res.status(400).json({
         status: 'failed',
-        message: "Can't post the student. Posting Database error.",
+        message: "Can't post the student.",
         postedStudentInfo,
       });
     }
@@ -57,7 +57,7 @@ exports.postStudentInfo = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({
       status: 'failed',
-      message: "Can't post the student. Server error.",
+      message: "Can't post the student.",
       error,
     });
   }

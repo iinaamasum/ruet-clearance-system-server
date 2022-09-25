@@ -20,7 +20,10 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Email address is required',
       },
-      unique: true,
+      unique: {
+        value: true,
+        message: 'given email already taken.',
+      },
     },
     faculty: {
       type: String,
@@ -53,7 +56,10 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Roll must be provided.',
       },
-      unique: true,
+      unique: {
+        value: true,
+        message: 'Roll number already assigned with another account.',
+      },
     },
     contact_number: {
       type: String,
@@ -61,7 +67,10 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Please provide contact number.',
       },
-      unique: true,
+      unique: {
+        value: true,
+        message: 'contact number already assigned with another account.',
+      },
     },
   },
   {

@@ -7,7 +7,7 @@ const {
 const router = require('express').Router();
 
 router
-  .route('/student/profile-infos')
+  .route('/student/profile-info')
   .get(getAllStudentInfo)
   .post(postStudentInfo);
 
