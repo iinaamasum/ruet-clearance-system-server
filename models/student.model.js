@@ -20,9 +20,12 @@ const studentSchema = new mongoose.Schema(
         value: true,
         message: 'Email address is required',
       },
-      validate: {
-        validator: [validator.isEmail, 'Please provide a valid mail.'],
-      },
+      // validate: {
+      //   validator: [
+      //     validator.isEmail({ VALUE }),
+      //     'Please provide a valid mail.',
+      //   ],
+      // },
     },
     faculty: {
       type: String,
