@@ -1,5 +1,8 @@
 const TeacherModel = require('../models/teacher.model');
-const { postTeacherInfoService } = require('../services/teacher.service');
+const {
+  postTeacherInfoService,
+  getTeacherInfoService,
+} = require('../services/teacher.service');
 
 exports.postTeacherInfo = async (req, res, next) => {
   try {
@@ -23,4 +26,13 @@ exports.postTeacherInfo = async (req, res, next) => {
       error,
     });
   }
+};
+
+exports.getTeacherInfo = async (req, res, next) => {
+  const TeacherInfo = await getTeacherInfoService(req.query);
+  res.status(200).json({
+    status: 'success',
+    message: 'successfully updated the teacher info.',
+    TeacherInfo,
+  });
 };
