@@ -4,10 +4,7 @@ const teacherSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: {
-        value: true,
-        message: 'name should be provided',
-      },
+      required: [true, 'name should be provided'],
       trim: true,
       lowercase: true,
       minLength: [2, 'name should be at least 2 chars.'],
@@ -15,41 +12,21 @@ const teacherSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: {
-        value: true,
-        message: 'Email is required.',
-      },
-      unique: {
-        value: true,
-        message:
-          'email must be unique. another account already added with this email.',
-      },
+      unique: [true, 'email is already in use.'],
+      required: [true, 'Email is required.'],
     },
     faculty: {
       type: String,
-      required: {
-        value: true,
-        message: 'faculty name is required.',
-      },
+      required: [true, 'faculty name is required.'],
     },
     dept: {
       type: String,
-      required: {
-        value: true,
-        message: 'dept is required.',
-      },
+      required: [true, 'dept is required.'],
     },
     contact_number: {
       type: String,
-      required: {
-        value: true,
-        message: 'contact number must be given.',
-      },
-      unique: {
-        value: true,
-        message: 'contact number is used for another account.',
-      },
-      trim: true,
+      unique: [true, 'contact number is already in use.'],
+      required: [true, 'contact number must be given.'],
     },
   },
   {

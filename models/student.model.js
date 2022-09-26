@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const studentSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: {
-        value: true,
-        message: 'Student Name must be given.',
-      },
+      required: [true, 'Student Name must be given.'],
       trim: true,
       lowercase: true,
       minLength: [2, 'Student Name can be at least 2 char.'],
@@ -16,61 +12,34 @@ const studentSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: {
-        value: true,
-        message: 'Email address is required',
-      },
-      unique: {
-        value: true,
-        message: 'given email already taken.',
-      },
+      required: [true, 'Email address is required'],
+      unique: [true, 'given email already taken.'],
     },
     faculty: {
       type: String,
-      required: {
-        value: true,
-        message: 'Faculty data is required',
-      },
+      required: [true, 'Faculty data is required'],
       trim: true,
       lowercase: true,
     },
     dept: {
       type: String,
-      required: {
-        value: true,
-        message: 'Dept data is not provided yet',
-      },
+      required: [true, 'Dept data is not provided yet'],
       trim: true,
       uppercase: true,
     },
     series: {
       type: String,
-      required: {
-        value: true,
-        message: 'Series info not found.',
-      },
+      required: [true, 'Series info not found.'],
     },
     roll: {
       type: String,
-      required: {
-        value: true,
-        message: 'Roll must be provided.',
-      },
-      unique: {
-        value: true,
-        message: 'Roll number already assigned with another account.',
-      },
+      required: [true, 'Roll must be provided.'],
+      unique: [true, 'Roll number already assigned with another account.'],
     },
     contact_number: {
       type: String,
-      required: {
-        value: true,
-        message: 'Please provide contact number.',
-      },
-      unique: {
-        value: true,
-        message: 'contact number already assigned with another account.',
-      },
+      required: [true, 'Please provide contact number.'],
+      unique: [true, 'contact number already assigned with another account.'],
     },
   },
   {

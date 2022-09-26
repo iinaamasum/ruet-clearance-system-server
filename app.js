@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const studentRoute = require('./routes/student.route');
+const teacherRoute = require('./routes/teacher.route');
 
 // middleware
 app.use(express.json());
@@ -10,7 +11,8 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 // routes
-app.use('/api/v1/', studentRoute);
+app.use('/api/v1/student/', studentRoute);
+app.use('/api/v1/teacher/', teacherRoute);
 
 // root route
 app.all('/', (req, res, next) => {
