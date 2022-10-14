@@ -15,7 +15,6 @@ const statusObjectSchema = new mongoose.Schema({
   },
   rejectionReason: {
     type: String,
-    required: true,
     trim: true,
   },
 });
@@ -51,6 +50,10 @@ const hallFacultyAdminSchema = new mongoose.Schema(
       required: true,
     },
     studentSeries: {
+      type: String,
+      required: true,
+    },
+    studentContactInfo: {
       type: String,
       required: true,
     },

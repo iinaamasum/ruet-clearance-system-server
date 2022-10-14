@@ -11,6 +11,7 @@ const {
 const {
   postHallFacultyAdminClearanceApplication,
   getHallFacultyAdminClearanceApplication,
+  deleteHallFacultyAdminClearanceApplicationById,
 } = require('../controllers/hallFacultyAdmin.controller');
 const {
   getAllStudentInfo,
@@ -26,6 +27,9 @@ router
   .delete(deleteEquipmentApplicationById);
 
 router.route('/due-clearance-apply/:id').delete(deleteDueApplicationById);
+router
+  .route('/hall-faculty-admin-clearance-apply/:id')
+  .delete(deleteHallFacultyAdminClearanceApplicationById);
 
 router
   .route('/due-clearance-apply')
