@@ -1,4 +1,4 @@
-const StudentModel = require('../models/student.model');
+const StudentModel = require('../models/studentInfo.model');
 
 exports.postStudentInfoService = async (data) => {
   const postDoc = await StudentModel(data);

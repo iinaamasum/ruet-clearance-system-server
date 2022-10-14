@@ -1,4 +1,4 @@
-const TeacherModel = require('../models/teacher.model');
+const TeacherModel = require('../models/teacherInfo.model');
 
 exports.postTeacherInfoService = async (data) => {
   const postDoc = new TeacherModel(data);

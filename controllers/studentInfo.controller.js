@@ -1,10 +1,10 @@
-const StudentModel = require('../models/student.model');
+const StudentModel = require('../models/studentInfo.model');
 const {
   postStudentInfoService,
   getAllStudentInfoService,
-} = require('../services/student.service');
+} = require('../services/studentInfo.service');
 
-exports.getAllStudentInfo = async (req, res, next) => {
+exports.getAllStudentInfo = async (req, res) => {
   try {
     const email = req.query;
     const allStudentInfo = await getAllStudentInfoService(email);
@@ -29,17 +29,7 @@ exports.getAllStudentInfo = async (req, res, next) => {
   }
 };
 
-exports.getStudentInfo = async (req, res, next) => {
-  const email = req.query;
-  console.log(email);
-  res.status(200).json({
-    status: 'success',
-    message: `got the student with id ${id}. @param object`,
-    // student,
-  });
-};
-
-exports.postStudentInfo = async (req, res, next) => {
+exports.postStudentInfo = async (req, res) => {
   try {
     const postedStudentInfo = await postStudentInfoService(req.body);
     if (!postedStudentInfo?._id) {
@@ -49,7 +39,7 @@ exports.postStudentInfo = async (req, res, next) => {
         postedStudentInfo,
       });
     }
-    res.status(200).json({
+    res.status(201).json({
       status: 'success',
       message: 'post a student info. @param object',
       postedStudentInfo,

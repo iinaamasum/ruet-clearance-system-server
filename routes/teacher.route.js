@@ -1,7 +1,7 @@
 const {
   postTeacherInfo,
   getTeacherInfo,
-} = require('../controllers/teacher.controller');
+} = require('../controllers/teacherInfo.controller');
 const router = require('express').Router();
 
 router.route('/profile-info').post(postTeacherInfo).get(getTeacherInfo);
