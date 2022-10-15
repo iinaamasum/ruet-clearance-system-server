@@ -75,3 +75,30 @@ exports.deleteEquipmentApplicationById = async (req, res) => {
     });
   }
 };
+
+exports.patchEquipmentClearanceApplicationById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await EquipmentClearanceApplyModel.findByIdAndUpdate(
+      id,
+      req.body
+    );
+    if (!result) {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Not exists.',
+      });
+    }
+    res.status(202).json({
+      status: 'success',
+      message: 'updated the application with the id. @param object',
+      result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'failed',
+      message: "Can't update the application with the id.",
+      error,
+    });
+  }
+};

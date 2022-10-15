@@ -60,18 +60,42 @@ exports.deleteHallFacultyAdminClearanceApplicationById = async (req, res) => {
     if (!result) {
       return res.status(400).json({
         status: 'failed',
-        message: "Can't get due application with the id.",
+        message: "Can't delete the application with the id.",
       });
     }
     res.status(202).json({
       status: 'success',
-      message: 'deleted due application with the id. @param object',
+      message: 'deleted the application with the id. @param object',
       result,
     });
   } catch (error) {
     res.status(400).json({
       status: 'failed',
-      message: "Can't delete due application with the id.",
+      message: "Can't delete the application with the id.",
+      error,
+    });
+  }
+};
+
+exports.patchHallFacultyAdminClearanceApplicationById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await HallFacultyAdminModel.findByIdAndUpdate(id, req.body);
+    if (!result) {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Not exists.',
+      });
+    }
+    res.status(202).json({
+      status: 'success',
+      message: 'updated the application with the id. @param object',
+      result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'failed',
+      message: "Can't update the application with the id.",
       error,
     });
   }

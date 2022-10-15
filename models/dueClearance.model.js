@@ -46,11 +46,35 @@ const dueClearanceSchema = new mongoose.Schema({
     type: dueStatusSchema,
     required: true,
   },
-  studentRoll: {
+  studentName: {
     type: String,
     required: true,
   },
   studentEmail: {
+    type: String,
+    required: true,
+  },
+  studentRoll: {
+    type: String,
+    required: true,
+  },
+  studentFaculty: {
+    type: String,
+    required: true,
+  },
+  studentDept: {
+    type: String,
+    required: true,
+  },
+  studentSeries: {
+    type: String,
+    required: true,
+  },
+  studentContactInfo: {
+    type: String,
+    required: true,
+  },
+  appliedFor: {
     type: String,
     required: true,
   },

@@ -2,16 +2,19 @@ const {
   postDueClearanceApplication,
   getDueClearanceApplication,
   deleteDueApplicationById,
+  patchDueClearanceApplicationById,
 } = require('../controllers/dueClearance.controller');
 const {
   getEquipmentClearanceApplication,
   postEquipmentClearanceApplication,
   deleteEquipmentApplicationById,
+  patchEquipmentClearanceApplicationById,
 } = require('../controllers/equipmentClearance.controller');
 const {
   postHallFacultyAdminClearanceApplication,
   getHallFacultyAdminClearanceApplication,
   deleteHallFacultyAdminClearanceApplicationById,
+  patchHallFacultyAdminClearanceApplicationById,
 } = require('../controllers/hallFacultyAdmin.controller');
 const {
   getAllStudentInfo,
@@ -24,12 +27,18 @@ router.route('/profile-info').get(getAllStudentInfo).post(postStudentInfo);
 
 router
   .route('/equipment-clearance-apply/:id')
-  .delete(deleteEquipmentApplicationById);
+  .delete(deleteEquipmentApplicationById)
+  .patch(patchEquipmentClearanceApplicationById);
 
-router.route('/due-clearance-apply/:id').delete(deleteDueApplicationById);
+router
+  .route('/due-clearance-apply/:id')
+  .delete(deleteDueApplicationById)
+  .patch(patchDueClearanceApplicationById);
+
 router
   .route('/hall-faculty-admin-clearance-apply/:id')
-  .delete(deleteHallFacultyAdminClearanceApplicationById);
+  .delete(deleteHallFacultyAdminClearanceApplicationById)
+  .patch(patchHallFacultyAdminClearanceApplicationById);
 
 router
   .route('/due-clearance-apply')
@@ -45,5 +54,13 @@ router
   .route('/equipment-clearance-apply')
   .get(getEquipmentClearanceApplication)
   .post(postEquipmentClearanceApplication);
+
+router.get('/', async (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'default route',
+    result: [],
+  });
+});
 
 module.exports = router;
